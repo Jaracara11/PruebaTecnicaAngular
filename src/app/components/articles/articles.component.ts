@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Article } from 'src/app/interfaces/article';
 import { ArticleService } from 'src/app/repository/article.service';
 
@@ -12,7 +13,11 @@ export class ArticlesComponent implements OnInit {
   articles: Article[] = [];
   filterForm: FormGroup;
 
-  constructor(private articleService: ArticleService, private fb: FormBuilder) {
+  constructor(
+    private articleService: ArticleService,
+    private router: Router,
+    private fb: FormBuilder
+  ) {
     this.filterForm = this.fb.group({
       filter: [''],
     });
@@ -20,12 +25,6 @@ export class ArticlesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllArticles();
-  }
-
-  private getAllArticles(): void {
-    this.articleService.getAllArticles().subscribe((result) => {
-      this.articles = result;
-    });
   }
 
   filteredArticles(): Article[] {
@@ -38,6 +37,20 @@ export class ArticlesComponent implements OnInit {
         article.marca.toLowerCase().includes(searchText) ||
         article.precio.toString().toLowerCase().includes(searchText)
       );
+    });
+  }
+
+  addArticle(): void {
+    this.router.navigate(['/upsert-article']);
+  }
+
+  editArticle(article: Article): void {
+    this.router.navigate(['/upsert-article', article]);
+  }
+
+  private getAllArticles(): void {
+    this.articleService.getAllArticles().subscribe((result) => {
+      this.articles = result;
     });
   }
 }

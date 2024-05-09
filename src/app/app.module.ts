@@ -6,9 +6,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ArticlesComponent } from './components/articles/articles.component';
+import { UpsertArticleComponent } from './components/upsert-article/upsert-article.component';
 
 @NgModule({
-  declarations: [AppComponent, ArticlesComponent],
+  declarations: [AppComponent, ArticlesComponent, UpsertArticleComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
