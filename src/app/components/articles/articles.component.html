@@ -1,0 +1,49 @@
+<div>
+  <form [formGroup]="filterForm">
+    <div class="mb-3 row">
+      <label
+        for="table-filtering-search"
+        class="col-xs-3 col-sm-auto col-form-label"
+        >Buscar Articulo:</label
+      >
+      <div class="col-xs-3 col-sm-auto">
+        <input
+          id="table-filtering-search"
+          class="form-control"
+          type="text"
+          formControlName="filter"
+        />
+      </div>
+    </div>
+  </form>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Codigo</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Marca</th>
+        <th scope="col">Precio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="articles.length > 0; else noData">
+        <tr *ngFor="let article of filteredArticles(); let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ article.codigo }}</td>
+          <td>{{ article.nombre }}</td>
+          <td>{{ article.tipo }}</td>
+          <td>{{ article.marca }}</td>
+          <td>{{ article.precio }}</td>
+        </tr>
+      </ng-container>
+      <ng-template #noData>
+        <tr>
+          <td colspan="6">No hay articulos para mostrar.</td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</div>
