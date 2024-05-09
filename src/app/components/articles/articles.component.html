@@ -47,9 +47,12 @@
           <td>{{ article.marca }}</td>
           <td>{{ article.precio }}</td>
           <td>
-            <button class="btn btn-primary" (click)="editArticle(article)">
-              Editar
-            </button>
+            <a
+              routerLink="/upsert-article"
+              class="btn btn-primary"
+              (click)="editArticle(article)"
+              >Editar</a
+            >
           </td>
         </tr>
       </ng-container>

@@ -45,7 +45,8 @@ export class ArticlesComponent implements OnInit {
   }
 
   editArticle(article: Article): void {
-    this.router.navigate(['/upsert-article', article]);
+    const articleJson = JSON.stringify(article);
+    this.router.navigate(['/upsert-article', { article: articleJson }]);
   }
 
   private getAllArticles(): void {
